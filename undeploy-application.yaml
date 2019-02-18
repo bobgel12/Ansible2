@@ -1,0 +1,17 @@
+- name: Installing sample node application
+  hosts: webserver
+  remote_user: ubuntu
+  sudo: yes
+  vars:
+    project_path: /var/www/nodejs
+  tasks:
+    - name: Set some variable
+      set_fact:
+        current_path: "{{ project_path }}/current"
+    - name: Retrieve current release folder
+      command: readlink -f current
+      ignore_errors: yes
+      args:
+        chdir: "{{ project_path }}"
+    - name: Stop the Server
+      shell: forever stop {{ current_path }}/index.js

@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kat1803/Sjsu172class.git"
+    "url": "git+https://github.com/bobgel12/Ansible2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kat1803/Sjsu172class/issues"
+    "url": "https://github.com/bobgel12/Ansible2/issues"
   },
-  "homepage": "https://github.com/kat1803/Sjsu172class#readme",
+  "homepage": "https://github.com/bobgel12/Ansible2#readme",
   "dependencies": {
     "express": "^4.16.4",
     "forever": "^0.15.3"

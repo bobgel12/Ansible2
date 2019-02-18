@@ -2,9 +2,6 @@
   hosts: webserver
   remote_user: ubuntu
   sudo: yes
-  # tasks:
-    # - name: Transfer the script now!
-    #   script: installNodeApp.sh
   vars:
     project_path: /var/www/nodejs
   tasks:
@@ -26,9 +23,9 @@
         state=directory
     - name: Clone the repository
       git:
-        repo: https://github.com/bobgel12/AnsibleDeploy.git
+        repo: https://github.com/bobgel12/Ansible2.git
         dest: "{{ release_path }}"
-    - name: Update npm
+    - name: Install module
       npm:
         path={{ release_path }}
     - name: Update symlink
@@ -36,15 +33,8 @@
         src={{ release_path }}
         dest={{ current_path }}
         state=link
-    # - name: Delete old pm2 process
-    #   command: pm2 delete ws-node
-    #   ignore_errors: yes
-    # - name: Start pm2
-    #   command: pm2 start {{ current_path }}/index.js --name node-app
-    - name: Kill the Node Process
-      shell: sudo killall -9 node
     - name: Run the Server
-      shell: sudo nohup node {{ current_path }}/index.js &
+      shell: forever start {{ current_path }}/index.js
     - name: Delete old dir
       shell: rm -rf {{ current_release_path.stdout }}/
       when: current_release_path.stdout != current_path
